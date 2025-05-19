@@ -1,9 +1,31 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"tabBar": {
+		"color": "#838383",
+		"selectedColor": "#0092FF",
+		"backgroundColor": "#ffffff",
+		"list": [
+			{
+				"pagePath": "pages/index/index",
+				"text": "首页"
+			},
+			{
+				"pagePath": "pages/about/about",
+				"text": "关于"
+			}
+		]
+	},
+	"pages": [
 		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "岩板选材",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/about/about",
+			"style": {
+				"navigationBarTitleText": "关于我们",
 				"navigationStyle": "custom"
 			}
 		},

@@ -4,87 +4,34 @@
 			<text class="title">岩板图库</text>
 		</view>
 
-		<!-- Tab Content -->
-		<swiper class="tab-content" :current="currentTab" @change="onSwiperChange" :style="{ height: contentHeight + 'px' }">
-			<!-- Material Selection Tab -->
-			<swiper-item>
-				<scroll-view scroll-y="true" class="scroll-view-content">
-					<!-- Banner Swiper -->
-					<app-swiper :items="banners" @click="onBannerClick" />
+		<!-- Material Selection Tab -->
+		<scroll-view scroll-y="true" class="scroll-view-content">
+			<!-- Banner Swiper -->
+			<app-swiper :items="banners" @click="onBannerClick" />
 
-					<!-- Search Bar -->
-					<search-bar placeholder="请输入关键词或产品名称" :readOnly="true" @click="goToSearch" />
+			<!-- Search Bar -->
+			<search-bar placeholder="请输入关键词或产品名称" :readOnly="true" @click="goToSearch" />
 
-					<!-- Category List -->
-					<view class="category-section">
-						<view class="section-title">
-							<text class="title-text">岩板选材</text>
-							<text class="title-desc">ROCK SHEET SELECTION</text>
-						</view>
+			<!-- Category List -->
+			<view class="category-section">
+				<view class="section-title">
+					<text class="title-text">岩板选材</text>
+					<text class="title-desc">ROCK SHEET SELECTION</text>
+				</view>
 
-						<view class="category-list">
-							<view class="category-item" v-for="(item, index) in categories" :key="index" @click="goToCategoryDetail(item)">
-								<view class="category-card">
-									<image class="category-image" :src="item.image" mode="aspectFill"></image>
-									<view class="category-title">{{ item.title }}</view>
-								</view>
-							</view>
+				<view class="category-list">
+					<view class="category-item" v-for="(item, index) in categories" :key="index" @click="goToCategoryDetail(item)">
+						<view class="category-card">
+							<image class="category-image" :src="item.image" mode="aspectFill"></image>
+							<view class="category-title">{{ item.title }}</view>
 						</view>
 					</view>
-				</scroll-view>
-			</swiper-item>
-
-			<!-- About Us Tab -->
-			<swiper-item>
-				<scroll-view scroll-y="true" class="scroll-view-content">
-					<view class="about-section">
-						<image class="about-image" src="/static/images/about-banner.jpg" mode="aspectFill"></image>
-
-						<view class="about-content">
-							<view class="section-title">
-								<text class="title-text">关于我们</text>
-								<text class="title-desc">ABOUT US</text>
-							</view>
-
-							<view class="about-info">
-								<text class="about-desc">{{ companyInfo.description }}</text>
-
-								<view class="contact-info">
-									<view class="contact-item">
-										<text class="iconfont icon-phone"></text>
-										<text class="contact-text">{{ companyInfo.phone }}</text>
-									</view>
-
-									<view class="contact-item">
-										<text class="iconfont icon-email"></text>
-										<text class="contact-text">{{ companyInfo.email }}</text>
-									</view>
-
-									<view class="contact-item">
-										<text class="iconfont icon-address"></text>
-										<text class="contact-text">{{ companyInfo.address }}</text>
-									</view>
-								</view>
-							</view>
-						</view>
-					</view>
-				</scroll-view>
-			</swiper-item>
-		</swiper>
-
-		<!-- Bottom Tab Bar -->
-		<view class="bottom-tab-bar">
-			<view 
-				v-for="(tab, index) in tabs" 
-				:key="index"
-				class="tab-item"
-				:class="{ active: currentTab === index }"
-				@click="onTabChange(index)"
-			>
-				<text class="iconfont" :class="tab.icon"></text>
-				<text class="tab-text">{{ tab.name }}</text>
+				</view>
 			</view>
-		</view>
+		</scroll-view>
+
+
+
 	</view>
 </template>
 
@@ -101,10 +48,7 @@ export default {
 	},
 	data() {
 		return {
-			tabs: [
-				{ name: '选材中心', icon: 'icon-material' },
-				{ name: '关于我们', icon: 'icon-about' }
-			],
+
 			currentTab: 0,
 			contentHeight: 500,
 			banners: [],
@@ -176,7 +120,7 @@ export default {
 				console.error('Invalid category data:', category);
 				return;
 			}
-			
+
 			try {
 				uni.navigateTo({
 					url: `/pages/category/category?id=${category.id}&title=${encodeURIComponent(category.title || '')}`,
@@ -359,7 +303,9 @@ export default {
 		}
 
 		&.active {
-			.iconfont, .tab-text {
+
+			.iconfont,
+			.tab-text {
 				color: #333;
 			}
 		}
